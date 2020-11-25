@@ -1,0 +1,39 @@
+{coord: {…}, weather: Array(1), base: "stations", main: {…}, visibility: 10000, …}
+    base: "stations"
+    clouds: {all: 75}
+    cod: 200
+    coord: {lon: 18.08, lat: 59.31}
+    dt: 1606314610
+    id: 2673723
+    main:
+        feels_like: 4.97
+        humidity: 87
+        pressure: 1009
+        temp: 8.63
+        temp_max: 9
+        temp_min: 8.33
+        __proto__: Object
+    name: "Stockholm Municipality"
+    sys:
+        country: "SE"
+        id: 1788
+        sunrise: 1606287927
+        sunset: 1606313068
+        type: 1
+        __proto__: Object
+    timezone: 3600
+    visibility: 10000
+    weather: Array(1)
+        0:
+            description: "molnigt"
+            icon: "04n"
+            id: 803
+            main: "Clouds"
+            __proto__: Object
+        length: 1
+        __proto__: Array(0)
+    wind:
+        deg: 220
+        speed: 4.1
+        __proto__: Object
+    __proto__: Object
