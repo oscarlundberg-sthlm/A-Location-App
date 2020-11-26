@@ -1,0 +1,27 @@
+{statename: {…}, distance: "0.010", elevation: "68", osmtags: {…}, state: "SE", …}
+    adminareas: {admin7: {…}, admin5: {…}}
+    alt: {}
+    altgeocode: "TYRESTA-NPREF"
+    city: "Haninge"
+    class: "unclassified"
+    confidence: "0.9"
+    country: "Sweden"
+    distance: "0.010"
+    elevation: "68"
+    geocode: "SOEDERMALM-NPREF"
+    geonumber: "3033428441113"
+    inlatt: "59.16125"
+    inlongt: "18.29197"
+    latt: "59.16125"
+    longt: "18.29214"
+    osmtags: {wikipedia: "sv:Haninge kommun", wikidata: "Q113692", ref_scb: "0136", short_name: "Haninge", ref: "0136", …}
+    postal: {}
+    prov: "SE"
+    region: "Tyresö Kommun, Stockholm"
+    remaining_credits: {}
+    staddress: "Åvavägen"
+    state: "SE"
+    statename: {}
+    stnumber: {}
+    timezone: "Europe/Stockholm"
+    __proto__: Object

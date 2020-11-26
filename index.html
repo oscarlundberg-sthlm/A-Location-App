@@ -7,7 +7,41 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="bg-image"></div>
+    <div id="center-box">
+        <img src="img/preloader.gif" alt="preloader" id="preloader">
+        <div id="content-box" class="hide">
+            <div id="grid-box">
+                <div id="current-area">
+                    <h1 id="current-area-output"></h1>
+                </div>
+                <div id="properties">
+                    <div id="altitude">
+                        <p>
+                            Höjd:
+                        </p>
+                        <h2 class="meters-over-sea-level" id="altitude-output"></h2><p class="meters-over-sea-level">m.ö.h</p>
+                    </div>
+                    <div id="temp">
+                        <p>
+                            Aktuell temperatur:
+                        </p>
+                        <h2 id="current-temp-output"></h2>
+                    </div>
+                    <div id="feels-like">
+                        <p>
+                            Känns som:
+                        </p>
+                        <h2 id="feels-like-output"></h2>
+                    </div>
+                    <div id="weather-description">
+                        <!-- <p id="weather-description-output"></p> -->
+                        <img src="" alt="weather icon" id="weather-icon-output">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>
