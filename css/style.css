@@ -1,15 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+:root {
+    --border-style: 1px solid rgb(196, 196, 196);
+}
 body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: white;
+    color: rgb(43, 43, 43);
     font-family: 'Roboto', sans-serif;
     background-color: skyblue;
 }
-h1 {
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Major Mono Display', monospace;
+}
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+h1 {
     font-size: 5em;
+}
+h2 {
+    font-size: 3.5em;
 }
 #bg-image {
     position: fixed;
@@ -20,5 +31,66 @@ h1 {
     width: 100vw;
     background-repeat: no-repeat;
     background-size: cover;
-    filter: opacity(20%);
+    filter: opacity(30%);
+}
+#center-box {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -30%);
+}
+#grid-box {
+    border-radius: 20px;
+    filter: drop-shadow(30px 30px 40px rgba(0, 0, 0, 0.5));
+    background-color: rgb(240, 240, 240);
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "current-area   current-area"
+    "properties     properties"
+    "properties     properties";
+}
+#properties {
+    margin: 10px;
+    grid-area: properties;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "temp           feels-like"
+        "altitude       weather-description";
+}
+#properties div, #current-area {
+    padding: 30px;
+}
+.meters-over-sea-level {
+    display: inline;
+}
+#current-area {
+    border-bottom: 3px groove rgb(196, 196, 196);
+    grid-area: current-area;
+}
+#altitude {
+    border-right: var(--border-style);
+    grid-area: altitude;
+}
+#temp {
+    border-right: var(--border-style);
+    border-bottom: var(--border-style);
+    grid-area: temp;
+}
+#feels-like {
+    border-bottom: var(--border-style);
+    grid-area: feels-like;
+}
+#weather-description {
+    grid-area: weather-description;
+}
+#weather-icon-output {
+    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
+}
+.hide {
+    display: none;
 }
