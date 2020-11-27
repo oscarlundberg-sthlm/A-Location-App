@@ -1,45 +1,91 @@
-let bgImage = document.getElementById("bg-image");
 let viewHeight = window.innerHeight;
 let viewWidth = window.innerWidth;
+
+let bgImage = document.getElementById("bg-image");
 let preloader = document.getElementById("preloader");
+
 let contentBox = document.getElementById("content-box");
+
 let currentAreaOutput = document.getElementById("current-area-output");
-let altitudeOutput = document.getElementById("altitude-output");
 let currentTempOutput = document.getElementById("current-temp-output");
 let feelsLikeOutput = document.getElementById("feels-like-output");
 let weatherDescriptionOutput = document.getElementById("weather-description-output");
 let weatherIconOutput = document.getElementById("weather-icon-output");
 
+let currentLocation;
+let latitude;
+let longitude;
 
-(async function() {
+$(contentBox).hide();
+$(bgImage).hide();
+$(preloader).hide();
+
+let locationSelector = document.getElementById("location-selector");
+let locationOptions = locationSelector.options;
+
+locationSelector.addEventListener("change", () => {
+    let chosenIndex = locationSelector.selectedIndex;
+    if (chosenIndex === 0) {
+        $(preloader).fadeOut();
+        return;
+    } else {
+        let selectedLocation = locationOptions[chosenIndex].text;
+        $(contentBox).hide();
+        $(bgImage).hide();
+        $(preloader).fadeIn();
+        
+        loadContent(selectedLocation);
+    }
+});
+
+async function loadContent(selectedLocation) {
     try {
-        let location = await getLocation();
-
-        let geocodeResponse = await fetch(`https://geocode.xyz/${location.coords.latitude},${location.coords.longitude}?json=1`);
-        let geocodeData = await geocodeResponse.json();
+        switch (selectedLocation) {
+            case "Din plats ➤":
+                currentLocation = await getLocation();
+                latitude = currentLocation.coords.latitude;
+                longitude = currentLocation.coords.longitude;
+                break;
+            case "New York":
+                latitude = 40.714272;
+                longitude = -74.005966;
+                break;
+            case "Engelberg":
+                latitude = 46.820047;
+                longitude = 8.402868;
+                break;
+            case "Buenos Aires":
+                latitude = -34.613152;
+                longitude = -58.377232;
+                break; 
+            default:
+                break;
+        }
         
-        let openWeatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=metric&lang=sv&appid=5a39bada217f9211d605a4f5bca8967a`);
+        let openWeatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&cnt=1&units=metric&lang=sv&appid=5a39bada217f9211d605a4f5bca8967a`);
         let openWeatherData = await openWeatherResponse.json();
-
-        let weatherType = openWeatherData.weather[0].main;
-        let weatherIcon = selectWeatherIcon(weatherType);
+        currentAreaOutput.innerHTML = openWeatherData.list[0].name.toLowerCase();
+        currentTempOutput.innerHTML = `${Math.round(openWeatherData.list[0].main.temp)}°`;
+        feelsLikeOutput.innerHTML = `${Math.round(openWeatherData.list[0].main.feels_like)}°`;
         
-        let mapResponse = await fetch(`https://www.mapquestapi.com/staticmap/v5/map?key=BUxi0PpSE6qtGnPR8YMpoFDq3fNU7iLA&center=${location.coords.latitude},${location.coords.longitude}&type=light&zoom=13&size=${viewWidth},${viewHeight}`);
-        let mapURL = await mapResponse.url;
+        let mapResponse = await fetch(`https://www.mapquestapi.com/staticmap/v5/map?key=BUxi0PpSE6qtGnPR8YMpoFDq3fNU7iLA&center=${latitude},${longitude}&type=light&zoom=13&size=${viewWidth},${viewHeight}`);
+        let mapData = await mapResponse.blob();
+        let mapURL = await URL.createObjectURL(mapData);
         bgImage.style.backgroundImage = `url(${mapURL})`;
         
-        currentAreaOutput.innerHTML = geocodeData.city.toLowerCase();
-        altitudeOutput.innerHTML = geocodeData.elevation;
-        currentTempOutput.innerHTML = `${Math.round(openWeatherData.main.temp)}°`;
-        feelsLikeOutput.innerHTML = `${Math.round(openWeatherData.main.feels_like)}°`;
+        let weatherType = openWeatherData.list[0].weather[0].main;
+        let weatherIcon = selectWeatherIcon(weatherType);
         weatherIconOutput.src = weatherIcon;
-
-        preloader.classList.toggle("hide");
-        contentBox.classList.toggle("hide");
+        
+        $(preloader).fadeOut("slow", () => {
+            $(bgImage).fadeIn("slow", () => {
+                $(contentBox).show("drop");
+            });
+        });
     } catch (error) {
         console.log(error);
     }
-})(getLocation, selectWeatherIcon);
+}
 
 function getLocation() {
     return new Promise(function(resolve, reject) {
@@ -48,6 +94,7 @@ function getLocation() {
         });
     })
 }
+
 
 function selectWeatherIcon(weatherType) {
     switch (weatherType) {

@@ -33,11 +33,19 @@ h2 {
     background-size: cover;
     filter: opacity(30%);
 }
+#dropdown {
+    margin: 10px;
+}
 #center-box {
     position: absolute;
     left: 50%;
     top: 30%;
     transform: translate(-50%, -30%);
+}
+#preloader img, #preloader p {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 #grid-box {
     border-radius: 20px;
@@ -90,7 +98,4 @@ h2 {
 }
 #weather-icon-output {
     filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
-}
-.hide {
-    display: none;
 }
