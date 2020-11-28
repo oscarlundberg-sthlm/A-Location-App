@@ -11,6 +11,7 @@ let currentTempOutput = document.getElementById("current-temp-output");
 let feelsLikeOutput = document.getElementById("feels-like-output");
 let weatherDescriptionOutput = document.getElementById("weather-description-output");
 let weatherIconOutput = document.getElementById("weather-icon-output");
+let placesNearbyOutput = document.getElementById("places-nearby");
 
 let currentLocation;
 let latitude;
@@ -29,11 +30,11 @@ locationSelector.addEventListener("change", () => {
         $(preloader).fadeOut();
         return;
     } else {
-        let selectedLocation = locationOptions[chosenIndex].text;
+        let selectedLocation = locationOptions[chosenIndex].value;
         $(contentBox).hide();
         $(bgImage).hide();
         $(preloader).fadeIn();
-        
+
         loadContent(selectedLocation);
     }
 });
@@ -41,26 +42,59 @@ locationSelector.addEventListener("change", () => {
 async function loadContent(selectedLocation) {
     try {
         switch (selectedLocation) {
-            case "Din plats ➤":
+            case "current-location":
                 currentLocation = await getLocation();
                 latitude = currentLocation.coords.latitude;
                 longitude = currentLocation.coords.longitude;
                 break;
-            case "New York":
+            case "new-york":
                 latitude = 40.714272;
                 longitude = -74.005966;
                 break;
-            case "Engelberg":
+            case "engelberg":
                 latitude = 46.820047;
                 longitude = 8.402868;
                 break;
-            case "Buenos Aires":
+            case "buenos-aires":
                 latitude = -34.613152;
                 longitude = -58.377232;
                 break; 
             default:
                 break;
         }
+
+        let wikiResponse = await fetch(`https://sv.wikipedia.org/w/api.php?action=query&list=geosearch&gsradius=10000&gscoord=${latitude}|${longitude}&format=json&origin=*`);
+        let wikiData = await wikiResponse.json();
+        let placesNearbyArray = wikiData.query.geosearch;
+        let placesTextAndImageHTML = "";
+        let wikiImageDiv = "";
+        let wikiImageUrl = "";
+        for (place of placesNearbyArray) {
+            let wikiTextResponse = await fetch(`https://sv.wikipedia.org/w/api.php?action=query&prop=extracts&exsentences=2&exlimit=1&titles=${place.title}&explaintext=1&formatversion=2&format=json&origin=*`);
+            let wikiTextData = await wikiTextResponse.json();
+            let wikiText = wikiTextData.query.pages[0].extract;
+            let checkForImagesResponse = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&titles=${place.title}&pithumbsize=150&format=json&origin=*`);
+            let checkForImagesData = await checkForImagesResponse.json();
+            let imagesArray = Object.values(checkForImagesData.query.pages);
+            if (typeof imagesArray[0].thumbnail !== "undefined") {
+                wikiImageUrl = imagesArray[0].thumbnail.source;
+                wikiImageDiv = `<img src="${wikiImageUrl}" alt="${place.title}">`;
+            } else {
+                wikiImageUrl = "";
+                wikiImageDiv = "";
+            }
+            placesTextAndImageHTML += `
+            <div class="a-place-nearby">
+                <h3>${place.title.toLowerCase()}</h3>
+                <div>
+                    <p>${wikiText}</p>
+                    ${wikiImageDiv}
+                </div>
+            </div>
+            `;
+        }
+        placesNearbyOutput.innerHTML = placesTextAndImageHTML;
+        
         
         let openWeatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&cnt=1&units=metric&lang=sv&appid=5a39bada217f9211d605a4f5bca8967a`);
         let openWeatherData = await openWeatherResponse.json();

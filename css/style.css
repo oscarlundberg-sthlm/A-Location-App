@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 :root {
     --border-style: 1px solid rgb(196, 196, 196);
+    --one-third: calc(100%/3);
 }
 body {
     box-sizing: border-box;
@@ -13,7 +14,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Major Mono Display', monospace;
 }
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h4, h5, h6, p {
     margin: 0;
 }
 h1 {
@@ -21,6 +22,9 @@ h1 {
 }
 h2 {
     font-size: 3.5em;
+}
+h3 {
+    margin: 0em 0em 0.5em 0em;
 }
 #bg-image {
     position: fixed;
@@ -39,8 +43,8 @@ h2 {
 #center-box {
     position: absolute;
     left: 50%;
-    top: 30%;
-    transform: translate(-50%, -30%);
+    top: 10%;
+    transform: translateX(-50%);
 }
 #preloader img, #preloader p {
     position: relative;
@@ -50,7 +54,7 @@ h2 {
 #grid-box {
     border-radius: 20px;
     filter: drop-shadow(30px 30px 40px rgba(0, 0, 0, 0.5));
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(255, 255, 255);
     width: fit-content;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -58,17 +62,16 @@ h2 {
     grid-template-areas: 
     "current-area   current-area"
     "properties     properties"
-    "properties     properties";
+    "places-nearby  places-nearby";
 }
 #properties {
     margin: 10px;
     grid-area: properties;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: var(--one-third) var(--one-third) var(--one-third);
     grid-template-rows: auto;
     grid-template-areas: 
-        "temp           feels-like"
-        "altitude       weather-description";
+        "temp           feels-like      weather-description";
 }
 #properties div, #current-area {
     padding: 30px;
@@ -80,17 +83,12 @@ h2 {
     border-bottom: 3px groove rgb(196, 196, 196);
     grid-area: current-area;
 }
-#altitude {
-    border-right: var(--border-style);
-    grid-area: altitude;
-}
 #temp {
     border-right: var(--border-style);
-    border-bottom: var(--border-style);
     grid-area: temp;
 }
 #feels-like {
-    border-bottom: var(--border-style);
+    border-right: var(--border-style);
     grid-area: feels-like;
 }
 #weather-description {
@@ -98,4 +96,18 @@ h2 {
 }
 #weather-icon-output {
     filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
+}
+#places-nearby {
+    grid-area: places-nearby;
+    line-height: 1.5em;
+}
+.a-place-nearby {
+    margin: 25px;
+}
+.a-place-nearby div {
+    display: flex;
+}
+.a-place-nearby img {
+    border-radius: 15px;
+    margin-left: 15px;
 }
