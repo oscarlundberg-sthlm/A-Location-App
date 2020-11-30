@@ -6,6 +6,7 @@ let viewWidth = window.innerWidth;
 let locationSelector = document.getElementById("location-selector");
 let locationOptions = locationSelector.options;
 
+let greeting = document.getElementById("greeting");
 let bgImage = document.getElementById("bg-image");
 let preloader = document.getElementById("preloader");
 let arrow = document.getElementById("arrow");
@@ -22,9 +23,9 @@ let placesNearbyOutput = document.getElementById("places-nearby");
 let currentLocation, latitude, longitude;
 
 
-
-$(contentBox).hide();
+// bgImage.style.backgroundImage = "url(img/weere-world.png)";
 $(bgImage).hide();
+$(contentBox).hide();
 $(preloader).hide();
 
 locationSelector.addEventListener("change", () => {
@@ -37,6 +38,7 @@ locationSelector.addEventListener("change", () => {
         $(arrow).hide();
         $(contentBox).hide();
         $(bgImage).hide();
+        greeting.classList.add("blur-me");
         $(preloader).fadeIn();
 
         loadContent(selectedLocation);
@@ -74,6 +76,7 @@ async function loadContent(selectedLocation) {
         await promise2;
         await promise3;
 
+        $(greeting).fadeOut("slow");
         body.style.backgroundColor = `hsl(${backgroundHue},100%,50%)`;
         
         $(preloader).fadeOut("slow", () => {

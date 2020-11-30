@@ -9,7 +9,7 @@ body {
     padding: 0;
     color: rgb(43, 43, 43);
     font-family: 'Roboto', sans-serif;
-    background-color: skyblue;
+    background-color: white;
     transition: background-color 2s ease;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -38,6 +38,15 @@ h3 {
     background-size: cover;
     filter: opacity(30%);
 }
+#greeting {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#greeting img {
+    width: 40vw;
+}
 #dropdown {
     display: inline-block;
     margin: 10px;
@@ -59,12 +68,21 @@ h3 {
 #center-box {
     position: absolute;
     left: 50%;
-    top: 10%;
+    top: 75px;
     transform: translateX(-50%);
 }
 #preloader {
     position: relative;
     top: 20vh;
+    border-radius: 20px;
+    width: fit-content;
+    height: fit-content;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    padding-top: 50px;
+    filter: drop-shadow(30px 30px 40px rgba(0, 0, 0, 0.5));
+    background-color: rgb(255, 255, 255);
 }
 #preloader img, #preloader p {
     position: relative;
@@ -79,7 +97,7 @@ h3 {
     animation-timing-function: ease-in;
 }
 @keyframes map-pin {
-    0%  {transform: translateY(-25px) translateX(-50%);}
+    0%  {transform: translateY(-18px) translateX(-50%);}
     100%{transform: translateY(0px) translateX(-50%);}
 }
 #grid-box {
@@ -138,4 +156,8 @@ h3 {
 .a-place-nearby img {
     border-radius: 15px;
     margin-left: 15px;
+}
+.blur-me {
+    filter: blur(4px);
+    transition: filter ease 1s;
 }
