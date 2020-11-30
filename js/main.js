@@ -1,3 +1,5 @@
+let body = document.querySelector("body");
+
 let viewHeight = window.innerHeight;
 let viewWidth = window.innerWidth;
 
@@ -71,6 +73,8 @@ async function loadContent(selectedLocation) {
         await promise1;
         await promise2;
         await promise3;
+
+        body.style.backgroundColor = `hsl(${backgroundHue},100%,50%)`;
         
         $(preloader).fadeOut("slow", () => {
             $(bgImage).fadeIn("slow", () => {
@@ -144,8 +148,12 @@ async function weather(latitude, longitude) {
         let openWeatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/find?lat=${latitude}&lon=${longitude}&cnt=1&units=metric&lang=sv&appid=5a39bada217f9211d605a4f5bca8967a`);
         let openWeatherData = await openWeatherResponse.json();
         currentAreaOutput.innerHTML = openWeatherData.list[0].name.toLowerCase();
-        currentTempOutput.innerHTML = `${Math.round(openWeatherData.list[0].main.temp)}°c`;
-        feelsLikeOutput.innerHTML = `${Math.round(openWeatherData.list[0].main.feels_like)}°c`;
+        let currentTemp = Math.round(openWeatherData.list[0].main.temp);
+        let feelsLike = Math.round(openWeatherData.list[0].main.feels_like);
+        currentTempOutput.innerHTML = `${currentTemp}°c`;
+        feelsLikeOutput.innerHTML = `${feelsLike}°c`;
+        
+        calcHue (currentTemp);
         
         let weatherType = openWeatherData.list[0].weather[0].main;
         let weatherIcon = selectWeatherIcon(weatherType);
@@ -178,5 +186,16 @@ function selectWeatherIcon(weatherType) {
     
         default:
             return "";
+    }
+}
+
+let backgroundHue;
+function calcHue (temp) {
+    if (temp > 30) {
+        backgroundHue = 0;
+    } else if (temp < -10) {
+        backgroundHue = 230;
+    } else {
+        backgroundHue = (-5.75 * temp) + 172.5;
     }
 }

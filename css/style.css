@@ -2,7 +2,6 @@
 :root {
     --border-style: 1px solid rgb(196, 196, 196);
     --one-third: calc(100%/3);
-    --window-height: 100vh;
 }
 body {
     box-sizing: border-box;
@@ -11,6 +10,7 @@ body {
     color: rgb(43, 43, 43);
     font-family: 'Roboto', sans-serif;
     background-color: skyblue;
+    transition: background-color 2s ease;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Major Mono Display', monospace;
