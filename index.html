@@ -10,18 +10,19 @@
 <body>
     <div id="dropdown">
         <select name="location-selector" id="location-selector">
-            <option value="choose-destination">Välj destination</option>
-            <option value="current-location">Din plats ➤</option>
+            <option value="choose-destination">Pick a place...</option>
+            <option value="current-location">Your current location ➤</option>
             <option value="new-york">New York</option>
             <option value="engelberg">Engelberg</option>
             <option value="buenos-aires">Buenos Aires</option>
         </select>
     </div>
+    <div id="arrow">⇠</div>
     <div id="bg-image"></div>
     <div id="center-box">
         <div id="preloader">
             <img src="img/preloader.gif" alt="preloader gif-image">
-            <p>Samlar info...</p>
+            <h3>one moment please</h3>
         </div>
         <div id="content-box">
             <div id="grid-box">
@@ -31,13 +32,13 @@
                 <div id="properties">
                     <div id="temp">
                         <p>
-                            Aktuell temperatur:
+                            Current temperature:
                         </p>
                         <h2 id="current-temp-output"></h2>
                     </div>
                     <div id="feels-like">
                         <p>
-                            Känns som:
+                            Feels like:
                         </p>
                         <h2 id="feels-like-output"></h2>
                     </div>

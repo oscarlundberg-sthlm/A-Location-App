@@ -2,6 +2,7 @@
 :root {
     --border-style: 1px solid rgb(196, 196, 196);
     --one-third: calc(100%/3);
+    --window-height: 100vh;
 }
 body {
     box-sizing: border-box;
@@ -38,7 +39,22 @@ h3 {
     filter: opacity(30%);
 }
 #dropdown {
+    display: inline-block;
     margin: 10px;
+}
+#arrow {
+    display: inline-block;
+    font-size: 30px;
+    position: absolute;
+    animation-name: arrow-seeme;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+}
+@keyframes arrow-seeme {
+    0%  {transform: translateX(25px) translateY(3px);}
+    100%{transform: translateX(0px) translateY(3px);}
 }
 #center-box {
     position: absolute;
@@ -46,10 +62,25 @@ h3 {
     top: 10%;
     transform: translateX(-50%);
 }
+#preloader {
+    position: relative;
+    top: 20vh;
+}
 #preloader img, #preloader p {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+}
+#preloader img {
+    animation-name: map-pin;
+    animation-duration: 0.5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+}
+@keyframes map-pin {
+    0%  {transform: translateY(-25px) translateX(-50%);}
+    100%{transform: translateY(0px) translateX(-50%);}
 }
 #grid-box {
     border-radius: 20px;
@@ -93,9 +124,6 @@ h3 {
 }
 #weather-description {
     grid-area: weather-description;
-}
-#weather-icon-output {
-    filter: drop-shadow(8px 8px 10px rgba(0, 0, 0, 0.5));
 }
 #places-nearby {
     grid-area: places-nearby;
