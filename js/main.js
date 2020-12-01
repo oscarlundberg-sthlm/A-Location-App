@@ -1,5 +1,4 @@
 let body = document.querySelector("body");
-
 let viewHeight = window.innerHeight;
 let viewWidth = window.innerWidth;
 
@@ -22,11 +21,10 @@ let placesNearbyOutput = document.getElementById("places-nearby");
 
 let currentLocation, latitude, longitude;
 
-
-// bgImage.style.backgroundImage = "url(img/weere-world.png)";
 $(bgImage).hide();
 $(contentBox).hide();
 $(preloader).hide();
+body.style.overflow = "hidden";
 
 locationSelector.addEventListener("change", () => {
     let chosenIndex = locationSelector.selectedIndex;
@@ -76,8 +74,10 @@ async function loadContent(selectedLocation) {
         await promise2;
         await promise3;
 
-        $(greeting).fadeOut("slow");
+        $(greeting).hide();
+        body.style.overflow = "visible";
         body.style.backgroundColor = `hsl(${backgroundHue},100%,50%)`;
+        contentBox.style.marginBottom = "75px";
         
         $(preloader).fadeOut("slow", () => {
             $(bgImage).fadeIn("slow", () => {
@@ -161,6 +161,7 @@ async function weather(latitude, longitude) {
         let weatherType = openWeatherData.list[0].weather[0].main;
         let weatherIcon = selectWeatherIcon(weatherType);
         weatherIconOutput.src = weatherIcon;
+        weatherDescriptionOutput.innerText = weatherType;
     } catch (error) {
         console.log(error);
     }
