@@ -1,3 +1,0 @@
-api.giphy.com/v1/gifs/{gif_id}
-
-api_key:ymq5yPDbjWhYeraRwoaVkek8PPInMfGo
