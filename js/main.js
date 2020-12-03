@@ -76,7 +76,7 @@ async function loadContent(selectedLocation) {
 
         $(greeting).hide();
         body.style.overflow = "visible";
-        body.style.backgroundColor = `hsl(${backgroundHue},100%,50%)`;
+        // body.style.backgroundColor = `hsl(${backgroundHue},100%,50%)`;
         contentBox.style.marginBottom = "75px";
         
         $(preloader).fadeOut("slow", () => {
@@ -156,7 +156,8 @@ async function weather(latitude, longitude) {
         currentTempOutput.innerHTML = `${currentTemp}°c`;
         feelsLikeOutput.innerHTML = `${feelsLike}°c`;
         
-        calcHue (currentTemp);
+        currentTempOutput.style.color = `hsl(${calcHue(currentTemp)},100%,50%)`;
+        feelsLikeOutput.style.color = `hsl(${calcHue(feelsLike)},100%,50%)`;
         
         let weatherType = openWeatherData.list[0].weather[0].main;
         let weatherIcon = selectWeatherIcon(weatherType);
@@ -193,13 +194,13 @@ function selectWeatherIcon(weatherType) {
     }
 }
 
-let backgroundHue;
+
 function calcHue (temp) {
     if (temp > 30) {
-        backgroundHue = 0;
+        return 0;
     } else if (temp < -10) {
-        backgroundHue = 230;
+        return 230;
     } else {
-        backgroundHue = (-5.75 * temp) + 172.5;
+        return (-5.75 * temp) + 172.5;
     }
 }
