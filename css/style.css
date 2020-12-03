@@ -74,8 +74,8 @@ h3 {
     animation-timing-function: linear;
 }
 @keyframes wireglobe {
-    0%      {filter: blur(0px); transform: rotate(0deg)}
-    100%    {filter: blur(0px); transform: rotate(360deg)}
+    0%      {filter: blur(2px); transform: rotate(0deg)}
+    100%    {filter: blur(2px); transform: rotate(360deg)}
 }
 #logo {
     position: absolute;
