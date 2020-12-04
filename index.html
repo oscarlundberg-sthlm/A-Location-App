@@ -5,22 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>TELEPORT - travel without physically crossing the distance</title>
+    <link rel="stylesheet" href="css/responsive.css">
+    <title>Location app</title>
 </head>
 <body>
     <div id="dropdown">
         <select name="location-selector" id="location-selector">
-            <option value="choose-destination">Pick a place...</option>
             <option value="current-location">Your current location ➤</option>
             <option value="new-york">New York</option>
             <option value="engelberg">Engelberg</option>
             <option value="buenos-aires">Buenos Aires</option>
         </select>
-    </div>
-    <div id="arrow">⇠</div>
-    <div id="greeting">
-        <img src="img/wireglobe.png" alt="logo" id="wireglobe">
-        <img src="img/logo_v2.png" alt="logo" id="logo">
     </div>
     <div id="bg-image"></div>
     <div id="center-box">
@@ -36,7 +31,7 @@
                 <div id="properties">
                     <div id="temp">
                         <p>
-                            Current temperature:
+                            Temp:
                         </p>
                         <h2 id="current-temp-output"></h2>
                     </div>

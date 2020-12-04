@@ -5,10 +5,8 @@ let viewWidth = window.innerWidth;
 let locationSelector = document.getElementById("location-selector");
 let locationOptions = locationSelector.options;
 
-let greeting = document.getElementById("greeting");
 let bgImage = document.getElementById("bg-image");
 let preloader = document.getElementById("preloader");
-let arrow = document.getElementById("arrow");
 
 let contentBox = document.getElementById("content-box");
 
@@ -21,29 +19,18 @@ let placesNearbyOutput = document.getElementById("places-nearby");
 
 let currentLocation, latitude, longitude;
 
-$(bgImage).hide();
-$(contentBox).hide();
-$(preloader).hide();
-body.style.overflow = "hidden";
+loadContent("current-location");
 
 locationSelector.addEventListener("change", () => {
     let chosenIndex = locationSelector.selectedIndex;
-    if (chosenIndex === 0) {
-        $(preloader).fadeOut();
-        return;
-    } else {
-        let selectedLocation = locationOptions[chosenIndex].value;
-        $(arrow).hide();
-        $(contentBox).hide();
-        $(bgImage).hide();
-        greeting.classList.add("blur-me");
-        $(preloader).fadeIn();
-
-        loadContent(selectedLocation);
-    }
+    let selectedLocation = locationOptions[chosenIndex].value;
+    loadContent(selectedLocation);
 });
 
 async function loadContent(selectedLocation) {
+    $(contentBox).hide();
+    $(bgImage).hide();
+    $(preloader).fadeIn();
     try {
         switch (selectedLocation) {
             case "current-location":
@@ -74,9 +61,6 @@ async function loadContent(selectedLocation) {
         await promise2;
         await promise3;
 
-        $(greeting).hide();
-        body.style.overflow = "visible";
-        // body.style.backgroundColor = `hsl(${backgroundHue},100%,50%)`;
         contentBox.style.marginBottom = "75px";
         
         $(preloader).fadeOut("slow", () => {
