@@ -56,7 +56,8 @@ h3 {
     filter: opacity(40%);
 }
 #dropdown {
-    display: inline-block;
+    display: flex;
+    justify-content: flex-end;
     margin: 0.7em;
 }
 #center-box {
