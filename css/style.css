@@ -18,9 +18,9 @@ body {
     transition: background-color 2s ease;
 }
 p {
-    line-height: 1.5em;
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
+    line-height: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 h2, h4, h5, h6 {
     font-family: 'Major Mono Display', monospace;
@@ -57,12 +57,12 @@ h3 {
 }
 #dropdown {
     display: inline-block;
-    margin: 10px;
+    margin: 0.7em;
 }
 #center-box {
     position: absolute;
     left: 50%;
-    top: 75px;
+    top: 5em;
     transform: translateX(-50%);
 }
 #preloader {
@@ -71,10 +71,10 @@ h3 {
     border-radius: 20px;
     width: fit-content;
     height: fit-content;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 20px;
-    padding-top: 50px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 1.3em;
+    padding-top: 3.33em;
     filter: drop-shadow(30px 30px 40px rgba(0, 0, 0, 0.5));
     background-color: rgb(255, 255, 255);
 }
@@ -112,7 +112,7 @@ h3 {
     "places-nearby  places-nearby";
 }
 #properties {
-    margin: 10px;
+    margin: 0.625em;
     grid-area: properties;
     display: grid;
     grid-template-columns: var(--one-third) var(--one-third) var(--one-third);
@@ -121,7 +121,7 @@ h3 {
         "temp           feels-like      weather-description";
 }
 #properties div, #current-area {
-    padding: 30px;
+    padding: 1.875em;
 }
 .meters-over-sea-level {
     display: inline;
@@ -145,14 +145,14 @@ h3 {
     grid-area: places-nearby;
 }
 .a-place-nearby {
-    margin: 25px;
+    margin: 1.5625em;
 }
 .a-place-nearby div {
     display: flex;
 }
 .a-place-nearby img {
     border-radius: 15px;
-    margin-left: 15px;
+    margin-left: 1rem;
 }
 .blur-me {
     filter: blur(4px);
