@@ -4,7 +4,7 @@
     }
     #grid-box {
         min-width: 1px;
-        max-width: 90vw;
+        max-width: 98vw;
     }
     h3 {
         font-size: 22px;
@@ -14,5 +14,11 @@
     }
     #weather-icon-output {
         width: 75px;
+    }
+    .a-place-nearby div {
+        height: 100px;
+    }
+    .a-place-nearby img {
+        transform: translateY(-75px);
     }
   }
