@@ -28,7 +28,7 @@ h2, h4, h5, h6 {
 h1, h3 {
     font-family: 'carambola', monospace;
 }
-h1, h2, h4, h5, h6, p {
+h1, h2, h4, h5, h6 {
     margin: 0;
 }
 h1 {
@@ -124,6 +124,9 @@ h3 {
 #properties div, #current-area {
     padding: 1.875em;
 }
+#properties p {
+    margin: 0;
+}
 .meters-over-sea-level {
     display: inline;
 }
@@ -149,11 +152,13 @@ h3 {
     margin: 1.5625em;
 }
 .a-place-nearby div {
-    display: flex;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 200px;
 }
 .a-place-nearby img {
-    border-radius: 15px;
-    margin-left: 1rem;
+    width: 100%;
+    transform: translateY(-150px);
 }
 .blur-me {
     filter: blur(4px);

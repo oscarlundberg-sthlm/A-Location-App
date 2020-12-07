@@ -93,7 +93,7 @@ async function wikipedia(latitude, longitude) {
             let wikiTextResponse = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exsentences=2&exlimit=1&titles=${place.title}&explaintext=1&formatversion=2&format=json&origin=*`);
             let wikiTextData = await wikiTextResponse.json();
             let wikiText = wikiTextData.query.pages[0].extract;
-            let checkForImagesResponse = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&titles=${place.title}&pithumbsize=150&format=json&origin=*`);
+            let checkForImagesResponse = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&titles=${place.title}&pithumbsize=600&format=json&origin=*`);
             let checkForImagesData = await checkForImagesResponse.json();
             let imagesArray = Object.values(checkForImagesData.query.pages);
             if (typeof imagesArray[0].thumbnail !== "undefined") {
@@ -106,11 +106,10 @@ async function wikipedia(latitude, longitude) {
             placesTextAndImageHTML += `
             <div class="a-place-nearby">
                 <h3>${place.title.toLowerCase()}</h3>
-                <div>
-                    <p>${wikiText}</p>
-                    ${wikiImageDiv}
-                </div>
+                <div>${wikiImageDiv}</div>
+                <p>${wikiText}</p>
             </div>
+            <br>
             `;
         }
         placesNearbyOutput.innerHTML = placesTextAndImageHTML;
